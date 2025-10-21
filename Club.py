@@ -8,5 +8,8 @@ current_date = date.today()
 print("Formatted Date:", current_date)
 #Reading the data
 data=pd.read_csv("TestData.csv")
-data["Date of planned meeting:"] = pd.to_datetime(data["Date of planned meeting:"])
+data["Date"] = pd.to_datetime(data["Date"])
 print(data)
+
+#Filtering the data
+print(data.loc[(data.Date == current_date),["Name","Date","Time"]])
