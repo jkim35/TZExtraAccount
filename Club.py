@@ -12,7 +12,7 @@ data["Date"] = pd.to_datetime(data["Date"])
 print(data)
 
 #Filtering the data
-specific_date = pd.to_datetime(date.today()+timedelta(days=2))
+specific_date = pd.to_datetime(date.today()+timedelta(days=3))
 print(data.loc[(data.Date <= specific_date)&(current_date<=data.Date),["Name","Date","Time","Type"]])
 filteredData = data.loc[(data.Date <= specific_date)&(current_date<=data.Date),["Name","Date","Time","Type"]]
 filteredData = filteredData.reset_index(drop=True)
@@ -26,15 +26,31 @@ filteredData['Time'] = filteredData['Time'].astype(str)
 x=0
 numRows = len(filteredData)
 time.sleep(4)
+current_date = current_date.strftime("%m/%d/%Y")
+specific_date = specific_date.strftime("%m/%d/%Y")
+robot.write("t")
+robot.write(current_date,interval=0.05)
+robot.write("---",interval=0.05)
+robot.write(specific_date,interval=0.05)
+robot.leftClick(500,600)
 while(x<numRows):
     print(filteredData.iloc[x:x+1,1])
     name = filteredData.iloc[x:x+1,0].astype(str)
+  #  name = name[1:]
     dater = filteredData.iloc[x:x+1,1].astype(str)
+   # dater = dater[1:]
     timed = filteredData.iloc[x:x+1,2].astype(str)
+ #   timed = timed[1:]
     type = filteredData.iloc[x:x+1,3].astype(str)
+   # type = type[1:]
     print(dater)
-    robot.write(name.to_string(),interval=0.05)
-    robot.write(dater.to_string(),interval=0.05)
-    robot.write(timed.to_string(),interval=0.05)
-    robot.write(type.to_string(),interval=0.05)
+    robot.write("t",interval=0.05)
+    robot.write(name.to_string()[5:],interval=0.05)
+    robot.write("//",interval=0.05)
+    robot.write(dater.to_string()[10:],interval=0.05)
+    robot.write("//",interval=0.05)
+    robot.write(timed.to_string()[5:],interval=0.05)
+    robot.write("//",interval=0.05)
+    robot.write(type.to_string()[5:],interval=0.05)
     x+=1
+    robot.leftClick(500,600)
