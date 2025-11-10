@@ -12,7 +12,7 @@ data["Date"] = pd.to_datetime(data["Date"])
 print(data)
 
 #Filtering the data
-specific_date = pd.to_datetime(date.today()+timedelta(days=3))
+specific_date = pd.to_datetime(date.today()+timedelta(days=7))
 print(data.loc[(data.Date <= specific_date)&(current_date<=data.Date),["Name","Date","Time","Type","Location"]])
 filteredData = data.loc[(data.Date <= specific_date)&(current_date<=data.Date),["Name","Date","Time","Type","Location"]]
 filteredData = filteredData.reset_index(drop=True)
@@ -26,7 +26,7 @@ filteredData['Location'] = filteredData['Location'].astype(str)
 #While loop
 x=0
 numRows = len(filteredData)
-time.sleep(4)
+time.sleep(1)
 current_date = current_date.strftime("%m/%d/%Y")
 specific_date = specific_date.strftime("%m/%d/%Y")
 robot.write("t")
