@@ -17,6 +17,7 @@ print(data.loc[(data.Date <= specific_date)&(current_date<=data.Date),["Name","D
 filteredData = data.loc[(data.Date <= specific_date)&(current_date<=data.Date),["Name","Date","Time","Type","Location"]]
 filteredData = filteredData.reset_index(drop=True)
 filteredData = filteredData.reset_index(drop=True)
+filteredData = filteredData.sort_index()
 #Changing the data type
 filteredData['Name'] = filteredData['Name'].astype(str)
 filteredData['Type'] = filteredData['Type'].astype(str)
